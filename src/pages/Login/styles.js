@@ -10,9 +10,12 @@ export const Logo = styled(MainLogo)`
   width: 100%;
 `
 
-export const GitHubButton = styled(Button)`
+export const GitHubButton = styled(Button).attrs({
+  variant: 'contained',
+  fullWidth: true
+})`
   && {
-    font-size: 20px;
+    font-size: 25px;
     padding: 15px;
     text-transform: none;
   }
