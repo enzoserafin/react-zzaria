@@ -5,7 +5,7 @@ class ErroBoundary extends PureComponent {
   state = { hasError: false }
 
   static propTypes = {
-    children: PropTypes.func.isRequired,
+    children: PropTypes.func.isRequired
   }
 
   static getDerivedStateFromError(error) {
