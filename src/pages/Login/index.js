@@ -51,7 +51,7 @@ const Login = () => {
           )}
 
           {!isUserLoggedIn && (
-            <GitHubButton onClick={login}>Entrar com GitHub</GitHubButton>
+            <GitHubButton onClick={login} >Entrar com GitHub</GitHubButton>
           )}
         </Grid>
 
