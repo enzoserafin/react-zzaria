@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { AuthContext } from '../../contexts/auth'
 import { Grid, Typography } from '@material-ui/core'
 import Header from '../../components/Header'
-import { Content } from './styles'
+import { Content, Spacer } from './styles'
 
 const Main = () => {
   const { userInfo } = useContext(AuthContext)
@@ -11,6 +11,9 @@ const Main = () => {
   return (
     <>
       <Header />
+
+      <Spacer />
+
       <Content>
         <Grid container justify='center'>
           <Grid item>
