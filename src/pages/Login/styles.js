@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Button } from '@material-ui/core'
-import { ReactComponent as MainLogo } from './logo-react-zzaria.svg'
+import { ReactComponent as MainLogo } from '../../assets/logo-react-zzaria.svg'
 
 export const Container = styled.div`
   padding: 20px;

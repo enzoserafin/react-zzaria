@@ -1,25 +1,27 @@
-import { Route, Switch } from 'react-router-dom'
+import { useContext } from 'react'
+import { AuthContext } from '../../contexts/auth'
+import { Grid, Typography } from '@material-ui/core'
+import Header from '../../components/Header'
+import { Content } from './styles'
 
-const routes = [
-  { path: '/rota1', content: 'Rota 1' },
-  { path: '/rota2', content: 'Rota 2' }
-]
+const Main = () => {
+  const { userInfo } = useContext(AuthContext)
+  const userName = userInfo.user.displayName.split(' ')[0]
 
-const Main = () => (
-  <>
-    <h1>Main</h1>
-    <Switch>
-      {routes.map(route => (
-        <Route
-          key={route.path}
-          path={route.path}
-          render={() => <h2>{route.content}</h2>
-          }
-        />
-      ))}
-
-    </Switch>
-  </>
-)
+  return (
+    <>
+      <Header />
+      <Content>
+        <Grid container justify='center'>
+          <Grid item>
+            <Typography variant='h3'>
+              {`O que vai ser hoje, ${userName}?`}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Content>
+    </>
+  )
+}
 
 export default Main
