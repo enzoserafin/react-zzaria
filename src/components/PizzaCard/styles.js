@@ -1,15 +1,22 @@
 import styled from 'styled-components'
-import { Divider as MaterialDivider, Paper, Typography } from '@material-ui/core'
+import { Divider as MaterialDivider, Grid, Paper, Typography } from '@material-ui/core'
 
+export const PizzasGrid = styled(Grid).attrs({
+  container: true,
+  spacing: 3
+})`
+  padding: 20px;
+`
 export const Divider = styled(MaterialDivider)`
   margin: 20px 0;
   width: 100%;
 `
 
 export const PaperPizza = styled(Paper)`
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  min-width: 250px;
   padding: 20px 0;
 `
 export const Pizza = styled.div`

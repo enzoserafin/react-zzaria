@@ -1,33 +1,22 @@
-import { useContext } from 'react'
-import { AuthContext } from '../../contexts/auth'
-import { Grid, Typography } from '@material-ui/core'
+import React, { Suspense } from 'react'
+import { Route, Switch } from 'react-router-dom'
 import Header from '../../components/Header'
-import PizzaCard from '../../components/PizzaCard'
-import { Content, Spacer } from './styles'
+import { Spacer } from './styles'
+
+const ChoosePizzaSize = React.lazy(() => import('../Choose-pizza-size'))
 
 const Main = () => {
-  const { userInfo } = useContext(AuthContext)
-  const userName = userInfo.user.displayName.split(' ')[0]
-
   return (
     <>
       <Header />
 
       <Spacer />
 
-      <Content>
-        <Grid container direction='column' alignItems='center'>
-          <Typography variant='h3' gutterBottom>
-            {`O que vai ser hoje, ${userName}?`}
-          </Typography>
-
-          <Typography variant='h4' gutterBottom>
-            Escolha o tamanho da pizza:
-          </Typography>
-        </Grid>
-
-        <PizzaCard />
-      </Content>
+      <Suspense fallback='Loading...'>
+        <Switch>
+          <Route path='/' exact component={ChoosePizzaSize} />
+        </Switch>
+      </Suspense>
     </>
   )
 }

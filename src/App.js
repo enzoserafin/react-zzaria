@@ -9,7 +9,7 @@ const MainPage = lazy(() => import('./pages/Main'))
 const Login = lazy(() => import('./pages/Login'))
 
 const App = ({ location }) => {
-  const { userInfo, setUserInfo, logout } = useContext(AuthContext)
+  const { userInfo, setUserInfo } = useContext(AuthContext)
   const [didCheckUserIn, setDidCheckUserIn] = useState(false)
 
   const { isUserLoggedIn } = userInfo
@@ -19,12 +19,13 @@ const App = ({ location }) => {
       console.log('dados do usuário:', user)
       setUserInfo({
         isUserLoggedIn: !!user,
-        user
+        user: user && {
+          ...user,
+          firstName: user.displayName.split(' ')[0]
+        }
       })
       setDidCheckUserIn(true)
     })
-
-    window.logout = logout
   }, [])
 
   if (!didCheckUserIn) {
