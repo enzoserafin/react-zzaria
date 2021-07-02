@@ -1,7 +1,7 @@
 export default [
   {
     id: 0,
-    image: 'src/assets/pizza-calabresa.png',
+    image: '../assets/pizza-calabresa.png',
     name: 'Calabresa',
     value: {
       0: 20,
@@ -11,7 +11,7 @@ export default [
   },
   {
     id: 1,
-    image: 'src/assets/pizza-frango-catupiry.png',
+    image: '../assets/pizza-frango-catupiry.png',
     name: 'Frango com Catupiry',
     value: {
       0: 25,
@@ -20,8 +20,8 @@ export default [
     }
   },
   {
-    id: 0,
-    image: 'src/assets/pizza-prestigio.png',
+    id: 2,
+    image: '../assets/pizza-prestigio.png',
     name: 'Prestígio',
     value: {
       0: 15,
