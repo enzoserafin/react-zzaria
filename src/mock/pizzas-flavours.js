@@ -1,7 +1,7 @@
 export default [
   {
     id: 0,
-    image: '../assets/pizza-calabresa.png',
+    image: '../../assets/pizza-calabresa.png',
     name: 'Calabresa',
     value: {
       0: 20,
