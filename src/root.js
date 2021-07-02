@@ -1,7 +1,7 @@
 import { BrowserRouter, Route } from 'react-router-dom'
 import { CssBaseline, createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import AuthProvider from './contexts/auth'
-import App from './app'
+import App from './App'
 
 const theme = createMuiTheme({
   typography: {
