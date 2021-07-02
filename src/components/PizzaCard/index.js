@@ -1,6 +1,7 @@
 import { Card, Grid, Typography } from '@material-ui/core'
 import { Divider, PizzasGrid, CardActionArea, Pizza, PizzaText } from './styles'
 import SingularOrPlural from '../../utils/singularOrPlural'
+import { CHOOSE_PIZZA_FLAVOURS } from '../../routes'
 
 import pizzaSizes from '../../mock/pizzas-sizes'
 
@@ -10,7 +11,7 @@ const PizzaCard = () => (
       <Grid item key={pizza.id} xs>
         <Card>
           <CardActionArea to={{
-            pathname: '/sabores-da-pizza',
+            pathname: CHOOSE_PIZZA_FLAVOURS,
             state: pizza
           }}>
             <Pizza>
