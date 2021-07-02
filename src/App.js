@@ -26,7 +26,7 @@ const App = ({ location }) => {
       })
       setDidCheckUserIn(true)
     })
-  }, [])
+  }, [setUserInfo])
 
   if (!didCheckUserIn) {
     return <LinearProgress />
