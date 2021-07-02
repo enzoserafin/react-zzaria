@@ -36,7 +36,7 @@ export const Checkbox = styled.input.attrs({
 `
 
 export const Divider = styled(MaterialDivider)`
-  margin: 20px 0;
+  margin: ${({ theme }) => theme.spacing(3)}px;
   width: 100%;
 `
 
@@ -44,7 +44,7 @@ export const PizzasGrid = styled(Grid).attrs({
   container: true,
   spacing: 2
 })`
-  padding: 20px;
+  padding: ${({ theme }) => theme.spacing(3)}px;
 `
 
 export const Title = styled(Typography).attrs({

@@ -11,10 +11,10 @@ export const PizzasGrid = styled(Grid).attrs({
   container: true,
   spacing: 2
 })`
-  padding: 20px;
+  padding: ${({ theme }) => theme.spacing(3)}px;
 `
 export const Divider = styled(MaterialDivider)`
-  margin: 20px 0;
+  margin: ${({ theme }) => theme.spacing(3)}px;
   width: 100%;
 `
 
@@ -29,8 +29,8 @@ export const CardActionArea = styled(MaterialActionArea).attrs({
 `
 export const Pizza = styled.div`
   align-items: center;
-  background: #fff;
-  border: 1px solid #ccc;
+  background: ${({ theme }) => theme.palette.common.white};
+  border: 1px solid ${({ theme }) => theme.palette.grey.A100};
   border-radius: 50%;
   display: flex;
   height: 200px;
@@ -41,7 +41,7 @@ export const Pizza = styled.div`
 
   &::before,
   &::after {
-    background: #ccc;
+    background: ${({ theme }) => theme.palette.grey.A100};
     content: '';
     position: absolute;
     transform: rotate(45deg);
@@ -62,7 +62,7 @@ export const PizzaText = styled(Typography).attrs({
   variant: 'h5'
 })`
   align-items: center;
-  background: #fff;
+  background: ${({ theme }) => theme.palette.common.white};
   border-radius: 50%;
   display: flex;
   height: 80px;

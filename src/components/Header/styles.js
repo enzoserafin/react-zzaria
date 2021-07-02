@@ -4,7 +4,7 @@ import { ReactComponent as MainLogo } from '../../assets/logo-react-zzaria.svg'
 
 export const Toolbar = styled(MaterialToolbar)`
   margin: 0 auto;
-  max-width: 960px;
+  max-width: ${({ theme }) => theme.breakpoints.values.lg}px;
   width: 100%;
 `
 
@@ -16,10 +16,10 @@ export const Logo = styled(MainLogo)`
   width: 200px;
 
   & path {
-    fill: #fff;
+    fill: ${({ theme }) => theme.palette.common.white};
   }
 
   & line {
-    stroke: #fff;
+    stroke: ${({ theme }) => theme.palette.common.white};
   }
 `
