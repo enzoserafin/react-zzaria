@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Content, Divider, Img, Label, PizzasGrid, Title } from './styles'
-import { Card, Grid, Typography } from '@material-ui/core'
+import { Card, Checkbox, Content, Divider, Img, Label, PizzasGrid, Title } from './styles'
+import { Grid, Typography } from '@material-ui/core'
 import t from 'prop-types'
 
 import singularOrPlural from '../../utils/singularOrPlural'
@@ -23,7 +23,8 @@ const ChoosePizzaFlavours = ({ location }) => {
       checkboxesChecked(checkboxes).length === flavours &&
       e.target.checked === true
     ) {
-      return window.alert(`Você só pode adicionar ${flavours} ${singularOrPlural(flavours, 'sabor', 'sabores')}`)
+      return window
+        .alert(`Você só pode adicionar ${flavours} ${singularOrPlural(flavours, 'sabor', 'sabores')}`)
     }
 
     setCheckboxes((checkboxes) => {
@@ -47,11 +48,10 @@ const ChoosePizzaFlavours = ({ location }) => {
       <PizzasGrid>
         {pizzasFlavours.map((pizza) => (
           <Grid item key={pizza.id} xs>
-            <Card>
+            <Card checked={!!checkboxes[pizza.id]}>
               <Label>
 
-                <input
-                  type='checkbox'
+                <Checkbox
                   checked={!!checkboxes[pizza.id]}
                   onChange={handleChangeCheckbox(pizza.id)}
                 />

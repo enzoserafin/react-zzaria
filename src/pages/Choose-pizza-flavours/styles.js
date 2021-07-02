@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {
+  Card as MaterialCard,
   CardActionArea as MaterialActionArea,
   Divider as MaterialDivider,
   Grid,
@@ -19,10 +20,20 @@ export const CardActionArea = styled(MaterialActionArea).attrs({
   min-width: 250px;
   padding: 20px 0;
 `
+export const Card = styled(MaterialCard)`
+  border: 2px solid transparent;
+  border-color: ${({ checked }) => checked ? '#000' : ''};
+`
 
 export const Label = styled(CardActionArea).attrs({
   component: 'label'
 })``
+
+export const Checkbox = styled.input.attrs({
+  type: 'checkbox'
+})`
+  display: none;
+`
 
 export const Divider = styled(MaterialDivider)`
   margin: 20px 0;
