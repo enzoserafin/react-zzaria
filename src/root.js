@@ -1,3 +1,4 @@
+import { ThemeProvider } from 'styled-components'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { CssBaseline, createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import AuthProvider from './contexts/auth'
@@ -11,12 +12,14 @@ const theme = createMuiTheme({
 
 const Root = () => (
   <MuiThemeProvider theme={theme}>
-    <AuthProvider>
-      <CssBaseline />
-      <BrowserRouter>
-        <Route component={App} />
-      </BrowserRouter>
-    </AuthProvider>
+    <ThemeProvider theme={theme}>
+      <AuthProvider>
+        <CssBaseline />
+        <BrowserRouter>
+          <Route component={App} />
+        </BrowserRouter>
+      </AuthProvider>
+    </ThemeProvider>
   </MuiThemeProvider>
 )
 
