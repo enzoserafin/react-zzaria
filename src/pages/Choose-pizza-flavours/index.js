@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import {
   Card,
@@ -20,14 +20,14 @@ import t from 'prop-types'
 import singularOrPlural from '../../utils/singularOrPlural'
 import toMoney from '../../utils/to-money'
 import { HOME, CHOOSE_PIZZA_QUANTITY } from '../../routes'
-import { AuthContext } from '../../contexts/auth'
+import useAuth from '../../hooks/auth'
 import pizzasFlavours from '../../mock/pizzas-flavours'
 // TODO AJUSTAR IMPORT DE IMGAGEM
 import img from '../../assets/pizza-calabresa.png'
 
 const ChoosePizzaFlavours = ({ location }) => {
   const [checkboxes, setCheckboxes] = useState(() => ({}))
-  const { userInfo } = useContext(AuthContext)
+  const { userInfo } = useAuth()
 
   if (!location.state) {
     return <Redirect to={HOME} />

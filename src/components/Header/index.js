@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import {
   AppBar,
   IconButton,
@@ -8,12 +8,11 @@ import {
 } from '@material-ui/core'
 import { AccountCircle } from '@material-ui/icons'
 import { Toolbar, LogoContainer, Logo } from './styles'
-import { AuthContext } from '../../contexts/auth'
+import useAuth from '../../hooks/auth'
 
 const Header = () => {
   const [toggleMenu, setToggleMenu] = useState(null)
-  const { userInfo, logout } = useContext(AuthContext)
-
+  const { userInfo, logout } = useAuth()
   const handleOpenMenu = (e) => {
     setToggleMenu(e.target)
   }

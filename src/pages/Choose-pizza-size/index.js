@@ -1,11 +1,10 @@
-import { useContext } from 'react'
-import { AuthContext } from '../../contexts/auth'
+import useAuth from '../../hooks/auth'
 import { Grid } from '@material-ui/core'
 import PizzaCard from '../../components/PizzaCard'
 import { Content, Title } from './styles'
 
 const ChoosePizzaSize = () => {
-  const { userInfo } = useContext(AuthContext)
+  const { userInfo } = useAuth()
 
   return (
     <Content>
