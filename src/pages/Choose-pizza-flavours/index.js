@@ -1,10 +1,23 @@
 import { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Card, Checkbox, Content, Divider, Img, Label, PizzasGrid, Title } from './styles'
-import { Grid, Typography } from '@material-ui/core'
+import {
+  Card,
+  Checkbox,
+  Content,
+  HeaderContent,
+  Divider,
+  Img,
+  Label,
+  PizzasGrid,
+  Title,
+  Footer,
+  OrderContainer
+} from './styles'
+import { Container, Grid, Typography } from '@material-ui/core'
 import t from 'prop-types'
 
 import singularOrPlural from '../../utils/singularOrPlural'
+import toMoney from '../../utils/to-money'
 import { HOME } from '../../routes'
 import pizzasFlavours from '../../mock/pizzas-flavours'
 // TODO AJUSTAR IMPORT DE IMGAGEM
@@ -38,34 +51,51 @@ const ChoosePizzaFlavours = ({ location }) => {
   return (
     <>
       <Content>
-        <Grid container direction='column' alignItems='center'>
-          <Title variant='h4' gutterBottom>
-            Escolha até {location.state.flavours} {singularOrPlural(flavours, 'sabor', 'sabores')}:
-          </Title>
-        </Grid>
+        <HeaderContent>
+          <Grid container direction='column' alignItems='center'>
+            <Title variant='h4' gutterBottom>
+              Escolha até {location.state.flavours} {singularOrPlural(flavours, 'sabor', 'sabores')}:
+            </Title>
+          </Grid>
+        </HeaderContent>
+
+        <PizzasGrid>
+          {pizzasFlavours.map((pizza) => (
+            <Grid item key={pizza.id} xs>
+              <Card checked={!!checkboxes[pizza.id]}>
+                <Label>
+
+                  <Checkbox
+                    checked={!!checkboxes[pizza.id]}
+                    onChange={handleChangeCheckbox(pizza.id)}
+                  />
+
+                  <Img src={img} alt={pizza.name} />
+
+                  <Divider />
+                  <Typography>{pizza.name}</Typography>
+                  <Typography variant='h5'>
+                    {toMoney(pizza.value[id])}
+                  </Typography>
+                </Label>
+              </Card>
+            </Grid>
+          ))}
+        </PizzasGrid>
       </Content>
 
-      <PizzasGrid>
-        {pizzasFlavours.map((pizza) => (
-          <Grid item key={pizza.id} xs>
-            <Card checked={!!checkboxes[pizza.id]}>
-              <Label>
-
-                <Checkbox
-                  checked={!!checkboxes[pizza.id]}
-                  onChange={handleChangeCheckbox(pizza.id)}
-                />
-
-                <Img src={img} alt={pizza.name} />
-
-                <Divider />
-                <Typography>{pizza.name}</Typography>
-                <Typography variant='h5'>{pizza.value[id]}</Typography>
-              </Label>
-            </Card>
+      <Footer>
+        <Container>
+          <Grid container>
+            <OrderContainer>
+              Pedido
+            </OrderContainer>
+            <Grid item>
+              Botões
+            </Grid>
           </Grid>
-        ))}
-      </PizzasGrid>
+        </Container>
+      </Footer>
     </>
   )
 }
