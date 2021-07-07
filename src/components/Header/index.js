@@ -7,8 +7,9 @@ import {
   MenuItem
 } from '@material-ui/core'
 import { AccountCircle } from '@material-ui/icons'
-import { Toolbar, LogoContainer, Logo } from './styles'
+import { Toolbar, LogoContainer, LinkLogo, Logo } from './styles'
 import useAuth from '../../hooks/auth'
+import { HOME } from '../../routes'
 
 const Header = () => {
   const [toggleMenu, setToggleMenu] = useState(null)
@@ -25,7 +26,9 @@ const Header = () => {
     <AppBar>
       <Toolbar>
         <LogoContainer>
-          <Logo />
+          <LinkLogo to={HOME}>
+            <Logo />
+          </LinkLogo>
         </LogoContainer>
 
         <Typography color='inherit'>{`Olá ${userInfo.user.firstName}`}</Typography>
