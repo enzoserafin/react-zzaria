@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import {
   Card,
   Checkbox,
   Content,
+  Button,
   HeaderContent,
   Divider,
   Img,
@@ -18,18 +19,20 @@ import t from 'prop-types'
 
 import singularOrPlural from '../../utils/singularOrPlural'
 import toMoney from '../../utils/to-money'
-import { HOME } from '../../routes'
+import { HOME, CHOOSE_PIZZA_QUANTITY } from '../../routes'
+import { AuthContext } from '../../contexts/auth'
 import pizzasFlavours from '../../mock/pizzas-flavours'
 // TODO AJUSTAR IMPORT DE IMGAGEM
 import img from '../../assets/pizza-calabresa.png'
 
 const ChoosePizzaFlavours = ({ location }) => {
   const [checkboxes, setCheckboxes] = useState(() => ({}))
+  const { userInfo } = useContext(AuthContext)
 
   if (!location.state) {
     return <Redirect to={HOME} />
   }
-  const { flavours, id } = location.state
+  const { flavours, id, name, slices } = location.state
 
   const handleChangeCheckbox = (pizzaId) => (e) => {
     if (
@@ -88,10 +91,20 @@ const ChoosePizzaFlavours = ({ location }) => {
         <Container>
           <Grid container>
             <OrderContainer>
-              Pedido
+              <Typography>
+                <b>{userInfo.user.firstName}, se pedido é:</b>
+              </Typography>
+              <Typography>
+                Pizza <b>{name.toUpperCase()}</b> - ({slices} fatias, {flavours} {`${singularOrPlural(flavours, 'sabor', 'sabores')}`})
+              </Typography>
             </OrderContainer>
             <Grid item>
-              Botões
+              <Button to={HOME}>
+                Mudar tamanho
+              </Button>
+              <Button to={CHOOSE_PIZZA_QUANTITY} color='primary'>
+                Quantas pizzas?
+              </Button>
             </Grid>
           </Grid>
         </Container>

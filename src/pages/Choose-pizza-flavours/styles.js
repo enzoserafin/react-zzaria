@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {
+  Button as MaterialButton,
   Card as MaterialCard,
   CardActionArea as MaterialActionArea,
   Divider as MaterialDivider,
@@ -80,5 +81,14 @@ export const OrderContainer = styled(Grid).attrs({
 })`
   && {
     flex-grow: 1;
+  }
+`
+
+export const Button = styled(MaterialButton).attrs({
+  variant: 'contained',
+  component: Link
+})`
+  && {
+    margin-left: ${({ theme }) => theme.spacing(2)}px;
   }
 `
