@@ -1,10 +1,21 @@
-import { createContext } from 'react'
+import { createContext, useState } from 'react'
 import t from 'prop-types'
 
 const OrderContext = createContext()
 
 const OrderProvider = ({ children }) => {
-  return <OrderContext.Provider value={{}}>
+  const [pizzas, addPizza] = useState([])
+
+  function addPizzaToOrder(pizza) {
+    addPizza((pizzas) => pizzas.concat(pizza))
+  }
+
+  return <OrderContext.Provider value={{
+    order: {
+      pizzas
+    },
+    addPizzaToOrder
+  }}>
     {children}
   </OrderContext.Provider>
 }

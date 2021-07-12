@@ -7,6 +7,7 @@ import * as routes from '../../routes'
 const ChoosePizzaSize = React.lazy(() => import('../Choose-pizza-size'))
 const ChoosePizzaFlavours = React.lazy(() => import('../Choose-pizza-flavours'))
 const ChoosePizzaQuantity = React.lazy(() => import('../Choose-pizza-quantity'))
+const Checkout = React.lazy(() => import('../Checkout'))
 
 const Main = () => {
   return (
@@ -20,6 +21,7 @@ const Main = () => {
           <Route path={routes.HOME} exact component={ChoosePizzaSize} />
           <Route path={routes.CHOOSE_PIZZA_FLAVOURS} component={ChoosePizzaFlavours} />
           <Route path={routes.CHOOSE_PIZZA_QUANTITY} component={ChoosePizzaQuantity} />
+          <Route path={routes.CHECKOUT} component={Checkout} />
         </Switch>
       </Suspense>
     </>

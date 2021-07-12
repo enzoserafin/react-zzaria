@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import {
   Button as MaterialButton,
   Input as MaterialInput,
@@ -42,6 +43,12 @@ export const Input = styled(MaterialInput).attrs({
 `
 
 export const Button = styled(MaterialButton).attrs({
-  variant: 'contained',
-  color: 'secondary'
-})``
+  color: 'secondary',
+  component: Link,
+  variant: 'contained'
+})`
+  && {
+    text-align: center;
+  }
+
+`
