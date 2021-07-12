@@ -1,5 +1,5 @@
 import { Link, withRouter } from 'react-router-dom'
-import { FooterContent, OrderContainer, Button } from './styles'
+import { FooterContent, OrderContainer, ButtonsContainer, Button } from './styles'
 import { Container, Grid, Typography } from '@material-ui/core'
 import useAuth from '../../hooks/auth'
 import t from 'prop-types'
@@ -31,7 +31,7 @@ const Footer = ({ buttons, history, location }) => {
               </Typography>
             )}
           </OrderContainer>
-          <Grid item>
+          <ButtonsContainer>
             <Button
               {
               ...buttons.back}
@@ -48,7 +48,7 @@ const Footer = ({ buttons, history, location }) => {
               color='primary'
               component={Link}
             />
-          </Grid>
+          </ButtonsContainer>
         </Grid>
       </Container>
     </FooterContent>

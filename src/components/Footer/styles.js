@@ -18,6 +18,16 @@ export const OrderContainer = styled(Grid).attrs({
   }
 `
 
+export const ButtonsContainer = styled(Grid).attrs({
+  item: true
+})`
+  && {
+    display: flex;
+    align-items: center;
+  }
+
+`
+
 export const Button = styled(MaterialButton).attrs({
   variant: 'contained'
 })`

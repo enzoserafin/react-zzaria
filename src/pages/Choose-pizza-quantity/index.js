@@ -1,3 +1,4 @@
+import t from 'prop-types'
 import {
   Content,
   HeaderContent,
@@ -5,9 +6,15 @@ import {
   MainContent,
   Input
 } from './styles'
+import { Redirect } from 'react-router-dom'
+import { HOME } from '../../routes'
 import Footer from '../../components/Footer'
 
-const ChoosePizzaQuantity = () => {
+const ChoosePizzaQuantity = ({ location }) => {
+  if (!location.state) {
+    return <Redirect to={HOME} />
+  }
+
   return (
     <>
       <Content>
@@ -37,6 +44,10 @@ const ChoosePizzaQuantity = () => {
       />
     </>
   )
+}
+
+ChoosePizzaQuantity.propTypes = {
+  location: t.object.isRequired
 }
 
 export default ChoosePizzaQuantity
