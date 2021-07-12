@@ -2,9 +2,9 @@ import { createContext, useCallback, useState } from 'react'
 import t from 'prop-types'
 import firebase from '../services/Firebase'
 
-export const AuthContext = createContext()
+const AuthContext = createContext()
 
-const Auth = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState({
     isUserLoggedIn: false,
     user: null
@@ -36,8 +36,8 @@ const Auth = ({ children }) => {
   )
 }
 
-Auth.propTypes = {
+AuthProvider.propTypes = {
   children: t.node.isRequired
 }
 
-export default Auth
+export { AuthProvider, AuthContext }
