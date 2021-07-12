@@ -1,18 +1,30 @@
+import { useState } from 'react'
 import t from 'prop-types'
 import {
   Content,
   HeaderContent,
   Title,
   MainContent,
-  Input
+  Input,
+  Button
 } from './styles'
 import { Redirect } from 'react-router-dom'
-import { HOME } from '../../routes'
+import { HOME, CHECKOUT } from '../../routes'
 import Footer from '../../components/Footer'
 
 const ChoosePizzaQuantity = ({ location }) => {
+  const [input, setInput] = useState(1)
+
   if (!location.state) {
     return <Redirect to={HOME} />
+  }
+
+  function handleChange(e) {
+    const { value } = e.target
+
+    if (value >= 1) {
+      setInput(value)
+    }
   }
 
   return (
@@ -26,7 +38,8 @@ const ChoosePizzaQuantity = ({ location }) => {
         </HeaderContent>
 
         <MainContent>
-          <Input defaultValue='1' autoFocus />
+          <Input value={input} onChange={handleChange} autoFocus />
+          <Button>Adicionar e <br />montar outra</Button>
         </MainContent>
 
       </Content>
@@ -37,7 +50,7 @@ const ChoosePizzaQuantity = ({ location }) => {
             children: 'Mudar sabores'
           },
           action: {
-            to: '/',
+            to: CHECKOUT,
             children: 'Finalizar compra'
           }
         }}

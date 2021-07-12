@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import {
+  Button as MaterialButton,
   Input as MaterialInput,
   Typography
 } from '@material-ui/core'
@@ -19,14 +20,19 @@ export const Title = styled(Typography).attrs({
 })``
 
 export const MainContent = styled.div`
+  align-items: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   margin-top: ${({ theme }) => theme.spacing(2)}px;
 `
 
 export const Input = styled(MaterialInput).attrs({
   type: 'number'
 })`
+  && {
+    margin-bottom: ${({ theme }) => theme.spacing(3)}px;
+  }
+
   & input {
     font-size: 80px;
     padding: 10px;
@@ -34,3 +40,8 @@ export const Input = styled(MaterialInput).attrs({
     width: 150px;
   }
 `
+
+export const Button = styled(MaterialButton).attrs({
+  variant: 'contained',
+  color: 'secondary'
+})``
