@@ -4,37 +4,34 @@ import {
   Card,
   Checkbox,
   Content,
-  Button,
   HeaderContent,
   Divider,
   Img,
   Label,
   PizzasGrid,
-  Title,
-  Footer,
-  OrderContainer
+  Title
 } from './styles'
-import { Container, Grid, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
+import Footer from '../../components/Footer'
 import t from 'prop-types'
 
 import singularOrPlural from '../../utils/singularOrPlural'
 import toMoney from '../../utils/to-money'
-import { HOME, CHOOSE_PIZZA_QUANTITY } from '../../routes'
-import useAuth from '../../hooks/auth'
-import pizzasFlavours from '../../mock/pizzas-flavours'
+import { CHOOSE_PIZZA_QUANTITY, HOME } from '../../routes'
+import pizzaFlavours from '../../mock/pizzas-flavours'
 // TODO AJUSTAR IMPORT DE IMGAGEM
 import img from '../../assets/pizza-calabresa.png'
 
 const ChoosePizzaFlavours = ({ location }) => {
   const [checkboxes, setCheckboxes] = useState(() => ({}))
-  const { userInfo } = useAuth()
 
   if (!location.state) {
     return <Redirect to={HOME} />
   }
-  const { flavours, id, name, slices } = location.state
+  const { flavours, id } = location.state.pizzaSize
 
   const handleChangeCheckbox = (pizzaId) => (e) => {
+    console.log('checkboxes', checkboxes)
     if (
       checkboxesChecked(checkboxes).length === flavours &&
       e.target.checked === true
@@ -63,7 +60,7 @@ const ChoosePizzaFlavours = ({ location }) => {
         </HeaderContent>
 
         <PizzasGrid>
-          {pizzasFlavours.map((pizza) => (
+          {pizzaFlavours.map((pizza) => (
             <Grid item key={pizza.id} xs>
               <Card checked={!!checkboxes[pizza.id]}>
                 <Label>
@@ -87,34 +84,38 @@ const ChoosePizzaFlavours = ({ location }) => {
         </PizzasGrid>
       </Content>
 
-      <Footer>
-        <Container>
-          <Grid container>
-            <OrderContainer>
-              <Typography>
-                <b>{userInfo.user.firstName}, se pedido é:</b>
-              </Typography>
-              <Typography>
-                Pizza <b>{name.toUpperCase()}</b> - ({slices} fatias, {flavours} {`${singularOrPlural(flavours, 'sabor', 'sabores')}`})
-              </Typography>
-            </OrderContainer>
-            <Grid item>
-              <Button to={HOME}>
-                Mudar tamanho
-              </Button>
-              <Button to={CHOOSE_PIZZA_QUANTITY} color='primary'>
-                Quantas pizzas?
-              </Button>
-            </Grid>
-          </Grid>
-        </Container>
-      </Footer>
+      <Footer
+        buttons={{
+          back: {
+            children: 'Mudar tamanho'
+          },
+          action: {
+            to: {
+              pathname: CHOOSE_PIZZA_QUANTITY,
+              state: {
+                ...location.state,
+                pizzaFlavours: getFlavoursNameAndId(checkboxes)
+              }
+            },
+            children: 'Quantas pizzas?'
+          }
+        }}
+      />
     </>
   )
 }
 
 function checkboxesChecked(checkboxes) {
   return Object.values(checkboxes).filter(Boolean)
+}
+
+function getFlavoursNameAndId(checkboxes) {
+  return Object.entries(checkboxes)
+    .filter(([, value]) => !!value)
+    .map(([id]) => ({
+      id,
+      name: pizzaFlavours.find((flavour) => flavour.id === id).name
+    }))
 }
 
 ChoosePizzaFlavours.propTypes = {

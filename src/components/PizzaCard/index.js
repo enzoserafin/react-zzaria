@@ -12,7 +12,7 @@ const PizzaCard = () => (
         <Card>
           <CardActionArea to={{
             pathname: CHOOSE_PIZZA_FLAVOURS,
-            state: pizza
+            state: { pizzaSize: pizza }
           }}>
             <Pizza>
               <PizzaText>
