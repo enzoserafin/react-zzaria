@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom'
 import {
   Card,
   Checkbox,
-  Content,
   HeaderContent,
   Divider,
   Img,
@@ -12,6 +11,7 @@ import {
   Title
 } from './styles'
 import { Grid, Typography } from '@material-ui/core'
+import Content from '../../components/Content'
 import Footer from '../../components/Footer'
 import t from 'prop-types'
 

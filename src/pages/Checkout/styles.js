@@ -4,11 +4,6 @@ import {
   Typography
 } from '@material-ui/core'
 
-export const Content = styled.main`
-  flex-grow: 1;
-  padding: ${({ theme }) => theme.spacing(3)}px;;
-`
-
 export const PaperContainer = styled(Paper)`
   && {
     flex-grow: 1;

@@ -1,5 +1,6 @@
 import { Button, Grid, List, ListItem, Typography } from '@material-ui/core'
-import { Content, Title, PaperContainer, FooterContent } from './styles'
+import { Title, PaperContainer, FooterContent } from './styles'
+import Content from '../../components/Content'
 import Footer from '../../components/Footer'
 import TextField from '../../components/TextField'
 import useOrder from '../../hooks/order'

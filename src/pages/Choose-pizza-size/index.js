@@ -1,7 +1,8 @@
 import useAuth from '../../hooks/auth'
 import { Grid } from '@material-ui/core'
+import Content from '../../components/Content'
 import PizzaCard from '../../components/PizzaCard'
-import { Content, Title } from './styles'
+import { Title } from './styles'
 
 const ChoosePizzaSize = () => {
   const { userInfo } = useAuth()

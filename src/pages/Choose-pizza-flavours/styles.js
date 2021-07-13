@@ -8,11 +8,6 @@ import {
   Typography
 } from '@material-ui/core'
 
-export const Content = styled.main`
-flex-grow: 1;
-  padding: ${({ theme }) => theme.spacing(3)}px;;
-`
-
 export const HeaderContent = styled.main`
   padding: 20px;
 `

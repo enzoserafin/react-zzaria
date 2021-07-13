@@ -2,13 +2,13 @@ import { useState } from 'react'
 
 import t from 'prop-types'
 import {
-  Content,
   HeaderContent,
   Title,
   MainContent,
   Input,
   Button
 } from './styles'
+import Content from '../../components/Content'
 import Footer from '../../components/Footer'
 import { Redirect } from 'react-router-dom'
 import { HOME, CHECKOUT } from '../../routes'
