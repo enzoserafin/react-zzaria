@@ -1,43 +1,49 @@
 import { Divider, Header, PaperContainer, Title } from './styles'
-import { Container, Typography } from '@material-ui/core'
+import { Button, Container, Typography } from '@material-ui/core'
 import OrderInfo from '../../components/OrderInfo'
 import Content from '../../components/Content'
+import FooterCheckout from '../../components/FooterCheckout'
 import useAuth from '../../hooks/auth'
 
 const CheckoutConfirmation = () => {
   const { userInfo } = useAuth()
 
   return (
-    <Content>
-      <Header>
-        <Title variant='h4'>Oi {userInfo.user.firstName}</Title>
-        <Typography>
-          Confere, por favor, se está tudo certo com o seu pedido antes de finalizar
-        </Typography>
-      </Header>
-
-      <Container maxWidth='sm'>
-        <PaperContainer>
-          <Typography variant='h6'>Seu pedido:</Typography>
-          <OrderInfo />
-
-          <Divider />
-
-          <Typography variant='h6>'>Endereço para entrega:</Typography>
+    <>
+      <Content>
+        <Header>
+          <Title variant='h4'>Oi {userInfo.user.firstName}</Title>
           <Typography>
-            Rua tal, 10, Compl., Bairro, CEP 10100-100 - Cidade/UF
+            Confere, por favor, se está tudo certo com o seu pedido antes de finalizar
           </Typography>
+        </Header>
 
-          <Divider />
+        <Container maxWidth='sm'>
+          <PaperContainer>
+            <Typography variant='h6'>Seu pedido:</Typography>
+            <OrderInfo />
 
-          <Typography variant='h6>'>Telefone para contato:</Typography>
-          <Typography>
-            {'(44) 99999-9999'}
-          </Typography>
+            <Divider />
 
-        </PaperContainer>
-      </Container>
-    </Content >
+            <Typography variant='h6>'>Endereço para entrega:</Typography>
+            <Typography>
+              Rua tal, 10, Compl., Bairro, CEP 10100-100 - Cidade/UF
+            </Typography>
+
+            <Divider />
+
+            <Typography variant='h6>'>Telefone para contato:</Typography>
+            <Typography>
+              {'(44) 99999-9999'}
+            </Typography>
+
+          </PaperContainer>
+        </Container>
+      </Content >
+      <FooterCheckout justifyContent='center'>
+        <Button variant='contained' color='primary' size='large'>Tudo certo</Button>
+      </FooterCheckout>
+    </>
   )
 }
 

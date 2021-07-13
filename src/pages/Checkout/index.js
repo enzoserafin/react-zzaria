@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { Button, Grid } from '@material-ui/core'
-import { Title, PaperContainer, FooterContent } from './styles'
+import { Title, PaperContainer } from './styles'
 import Content from '../../components/Content'
-import Footer from '../../components/Footer'
+import FooterCheckout from '../../components/FooterCheckout'
 import TextField from '../../components/TextField'
 import OrderInfo from '../../components/OrderInfo'
 import { CHECKOUT_CONFIRMATION } from '../../routes'
@@ -42,14 +42,16 @@ const Checkout = () => {
         </Grid>
 
       </Content>
-
-      <Footer>
-        <FooterContent>
-          <Button variant='contained' color='primary' component={Link} to={CHECKOUT_CONFIRMATION}>
-            Confirmar dados
-          </Button>
-        </FooterContent>
-      </Footer>
+      <FooterCheckout>
+        <Button
+          variant='contained'
+          color='primary'
+          component={Link}
+          to={CHECKOUT_CONFIRMATION}
+        >
+          Confirmar dados
+        </Button>
+      </FooterCheckout>
     </>
   )
 }
