@@ -5,18 +5,22 @@ import OrderInfo from '../../components/OrderInfo'
 import Content from '../../components/Content'
 import FooterCheckout from '../../components/FooterCheckout'
 import useAuth from '../../hooks/auth'
-import { CHECKOUT_SUCCESS } from '../../routes'
+import { HOME } from '../../routes'
 
-const CheckoutConfirmation = () => {
+const CheckoutSuccess = () => {
   const { userInfo } = useAuth()
 
   return (
     <>
       <Content>
         <Header>
-          <Title variant='h4'>Oi {userInfo.user.firstName}</Title>
+          <Title variant='h4'>Prontinho, {userInfo.user.firstName}</Title>
           <Typography>
-            Confere, por favor, se está tudo certo com o seu pedido antes de finalizar
+            Seu pedido será entregue no endereço abaixo em até
+          </Typography>
+
+          <Typography variant='h6'>
+            40 minutos =)
           </Typography>
         </Header>
 
@@ -44,17 +48,14 @@ const CheckoutConfirmation = () => {
       </Content >
       <FooterCheckout justifyContent='center'>
         <Button
-          variant='contained'
-          color='primary'
+          color='secondary'
           size='large'
           component={Link}
-          to={CHECKOUT_SUCCESS}
-        >
-          Tudo certo
-        </Button>
+          to={HOME}
+        >{'<'}Voltar para a Página Inicial</Button>
       </FooterCheckout>
     </>
   )
 }
 
-export default CheckoutConfirmation
+export default CheckoutSuccess

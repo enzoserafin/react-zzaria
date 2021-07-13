@@ -9,6 +9,7 @@ const ChoosePizzaFlavours = React.lazy(() => import('../Choose-pizza-flavours'))
 const ChoosePizzaQuantity = React.lazy(() => import('../Choose-pizza-quantity'))
 const Checkout = React.lazy(() => import('../Checkout'))
 const CheckoutConfirmation = React.lazy(() => import('../CheckoutConfirmation'))
+const CheckoutSuccess = React.lazy(() => import('../CheckoutSuccess'))
 
 const Main = () => {
   return (
@@ -24,6 +25,7 @@ const Main = () => {
           <Route path={routes.CHOOSE_PIZZA_QUANTITY} component={ChoosePizzaQuantity} />
           <Route path={routes.CHECKOUT} exact component={Checkout} />
           <Route path={routes.CHECKOUT_CONFIRMATION} component={CheckoutConfirmation} />
+          <Route path={routes.CHECKOUT_SUCCESS} component={CheckoutSuccess} />
         </Switch>
       </Suspense>
     </>
