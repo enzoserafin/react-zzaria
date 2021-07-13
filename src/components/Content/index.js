@@ -1,9 +1,12 @@
 import { Main } from './styles'
+import { Container } from '@material-ui/core'
 import t from 'prop-types'
 
 const Content = ({ children, ...props }) => (
   <Main {...props}>
-    {children}
+    <Container>
+      {children}
+    </Container>
   </Main>
 )
 
