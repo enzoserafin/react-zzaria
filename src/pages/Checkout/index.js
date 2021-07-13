@@ -1,14 +1,13 @@
-import { Button, Grid, List, ListItem, Typography } from '@material-ui/core'
+import { Link } from 'react-router-dom'
+import { Button, Grid } from '@material-ui/core'
 import { Title, PaperContainer, FooterContent } from './styles'
 import Content from '../../components/Content'
 import Footer from '../../components/Footer'
 import TextField from '../../components/TextField'
-import useOrder from '../../hooks/order'
-import singularOrPlural from '../../utils/singularOrPlural'
+import OrderInfo from '../../components/OrderInfo'
+import { CHECKOUT_CONFIRMATION } from '../../routes'
 
 const Checkout = () => {
-  const { order } = useOrder()
-
   return (
     <>
       <Content>
@@ -37,28 +36,7 @@ const Checkout = () => {
           <Grid container item xs={12} md={6} direction='column'>
             <Title>Informações do seu pedido:</Title>
             <PaperContainer>
-
-              <List>
-                {order.pizzas.map((pizza, index) => {
-                  const { pizzaFlavours, pizzaSize, quantity } = pizza
-                  const { name, slices, flavours } = pizzaSize
-
-                  return (
-                    <ListItem key={index}>
-                      <Typography>
-                        <b>{quantity}</b>{' '}
-                        {singularOrPlural(quantity, 'pizza', 'pizzas')}{' '}
-                        <b>{name.toUpperCase()}</b> - ({slices} fatias, {flavours} {`${singularOrPlural(flavours, 'sabor', 'sabores')}`})
-
-                        <br />
-
-                        {singularOrPlural(pizzaFlavours.length, 'no sabor', 'nos sabores')}{' '}
-                        <b>{pizzaFlavours.map(({ name }) => name).join(', ')}</b>
-                      </Typography>
-                    </ListItem>
-                  )
-                })}
-              </List>
+              <OrderInfo />
             </PaperContainer>
           </Grid>
         </Grid>
@@ -67,7 +45,7 @@ const Checkout = () => {
 
       <Footer>
         <FooterContent>
-          <Button variant='contained' color='primary'>
+          <Button variant='contained' color='primary' component={Link} to={CHECKOUT_CONFIRMATION}>
             Confirmar dados
           </Button>
         </FooterContent>
