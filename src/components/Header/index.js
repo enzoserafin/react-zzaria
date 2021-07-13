@@ -1,51 +1,20 @@
-import { useState } from 'react'
-import {
-  AppBar,
-  IconButton,
-  Typography,
-  Menu,
-  MenuItem
-} from '@material-ui/core'
-import { AccountCircle } from '@material-ui/icons'
-import { Toolbar, LogoContainer, LinkLogo, Logo } from './styles'
-import useAuth from '../../hooks/auth'
-import { HOME } from '../../routes'
+import { Toolbar } from './styles'
+import { Route, Switch } from 'react-router-dom'
+import { AppBar } from '@material-ui/core'
+import HeaderCommon from '../HeaderCommon'
+import HeaderCheckout from '../HeaderCheckout'
 
-const Header = () => {
-  const [toggleMenu, setToggleMenu] = useState(null)
-  const { userInfo, logout } = useAuth()
-  const handleOpenMenu = (e) => {
-    setToggleMenu(e.target)
-  }
+import { CHECKOUT } from '../../routes'
 
-  const handleClose = () => {
-    setToggleMenu(null)
-  }
-
-  return (
-    <AppBar>
-      <Toolbar>
-        <LogoContainer>
-          <LinkLogo to={HOME}>
-            <Logo />
-          </LinkLogo>
-        </LogoContainer>
-
-        <Typography color='inherit'>{`Olá ${userInfo.user.firstName}`}</Typography>
-        <IconButton color='inherit' onClick={handleOpenMenu}>
-          <AccountCircle />
-        </IconButton>
-        {/* https://github.com/da2k/curso-reactjs-ninja/issues/522 */}
-        <Menu
-          open={!!toggleMenu}
-          onClose={handleClose}
-          anchorEl={toggleMenu}
-        >
-          <MenuItem onClick={logout}>Sair</MenuItem>
-        </Menu>
-      </Toolbar>
-    </AppBar>
-  )
-}
+const Header = () => (
+  <AppBar>
+    <Toolbar>
+      <Switch>
+        <Route path={CHECKOUT} component={HeaderCheckout} />
+        <Route component={HeaderCommon} />
+      </Switch>
+    </Toolbar>
+  </AppBar>
+)
 
 export default Header
