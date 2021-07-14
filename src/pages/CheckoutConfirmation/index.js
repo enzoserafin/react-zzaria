@@ -5,10 +5,12 @@ import OrderInfo from '../../components/OrderInfo'
 import Content from '../../components/Content'
 import FooterCheckout from '../../components/FooterCheckout'
 import useAuth from '../../hooks/auth'
+import useOrder from '../../hooks/order'
 import { CHECKOUT_SUCCESS } from '../../routes'
 
 const CheckoutConfirmation = () => {
   const { userInfo } = useAuth()
+  const { sendOrder } = useOrder()
 
   return (
     <>
@@ -49,6 +51,7 @@ const CheckoutConfirmation = () => {
           size='large'
           component={Link}
           to={CHECKOUT_SUCCESS}
+          onClick={sendOrder}
         >
           Tudo certo
         </Button>
