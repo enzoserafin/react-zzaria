@@ -3,6 +3,7 @@ import { Button, Grid } from '@material-ui/core'
 import { Title, PaperContainer } from './styles'
 import Content from '../../components/Content'
 import FooterCheckout from '../../components/FooterCheckout'
+import FormAddress from '../../components/FormAddress'
 import TextField from '../../components/TextField'
 import OrderInfo from '../../components/OrderInfo'
 import { CHECKOUT_CONFIRMATION, HOME } from '../../routes'
@@ -22,15 +23,7 @@ const Checkout = () => {
           <Grid item xs={12} md={6}>
             <Title>Qual endereço para entrega?</Title>
             <PaperContainer>
-              <Grid container spacing={2}>
-                <TextField label='CEP' xs={4} autoFocus />
-                <Grid item xs={8} />
-                <TextField label='Rua' xs={9} />
-                <TextField label='Número' xs={3} />
-                <TextField label='Complemento' xs={12} />
-                <TextField label='Cidade' xs={9} />
-                <TextField label='Estado' xs={3} />
-              </Grid>
+              <FormAddress />
             </PaperContainer>
 
             <Title>Qual o seu telefone?</Title>

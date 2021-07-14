@@ -31,14 +31,14 @@ const CheckoutSuccess = () => {
 
             <Divider />
 
-            <Typography variant='h6>'>Endereço para entrega:</Typography>
+            <Typography variant='h6'>Endereço para entrega:</Typography>
             <Typography>
               Rua tal, 10, Compl., Bairro, CEP 10100-100 - Cidade/UF
             </Typography>
 
             <Divider />
 
-            <Typography variant='h6>'>Telefone para contato:</Typography>
+            <Typography variant='h6'>Telefone para contato:</Typography>
             <Typography>
               {'(44) 99999-9999'}
             </Typography>
