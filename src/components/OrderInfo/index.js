@@ -1,8 +1,11 @@
-import { List, ListItem, Typography } from '@material-ui/core'
+import t from 'prop-types'
+import { ListItem } from './styles'
+import { IconButton, List, Typography } from '@material-ui/core'
+import { Close } from '@material-ui/icons'
 import useOrder from '../../hooks/order'
 import singularOrPlural from '../../utils/singularOrPlural'
 
-const OrderInfo = () => {
+const OrderInfo = ({ showOptions }) => {
   const { order } = useOrder()
 
   return (
@@ -23,11 +26,21 @@ const OrderInfo = () => {
               {singularOrPlural(pizzaFlavours.length, 'no sabor', 'nos sabores')}{' '}
               <b>{pizzaFlavours.map(({ name }) => name).join(', ')}</b>
             </Typography>
+
+            {showOptions && (
+              <IconButton title='Remover' color='secondary'>
+                <Close />
+              </IconButton>
+            )}
           </ListItem>
         )
       })}
     </List>
   )
+}
+
+OrderInfo.propTypes = {
+  showOptions: t.bool
 }
 
 export default OrderInfo
