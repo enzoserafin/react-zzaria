@@ -4,7 +4,7 @@ import { Title, PaperContainer } from './styles'
 import Content from '../../components/Content'
 import FooterCheckout from '../../components/FooterCheckout'
 import FormAddress from '../../components/FormAddress'
-import TextField from '../../components/TextField'
+import PhoneField from '../../components/PhoneField'
 import OrderInfo from '../../components/OrderInfo'
 import { CHECKOUT_CONFIRMATION, HOME } from '../../routes'
 import useOrder from '../../hooks/order'
@@ -28,7 +28,7 @@ const Checkout = () => {
 
             <Title>Qual o seu telefone?</Title>
             <PaperContainer>
-              <TextField label='Telefone' xs={4} />
+              <PhoneField />
             </PaperContainer>
 
           </Grid>

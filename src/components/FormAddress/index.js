@@ -7,16 +7,38 @@ const FormAddress = () => {
   const [fetchingCep, setFetchingCep] = useState(false)
   const [addressState, dispatch] = useReducer(reducer, initialState)
   const numberField = useRef()
+  const addressField = useRef()
 
   useEffect(() => {
     async function fetchAddress() {
       if (cep.length < 9) {
         return
       }
+
+      console.log('buscar cep:', cep)
+
       setFetchingCep(true)
       const data = await fetch(`https://ws.apicep.com/cep/${cep}.json`)
       setFetchingCep(false)
+
+      if (!data.ok) {
+        dispatch({ type: 'RESET' })
+        addressField.current.focus()
+        return
+      }
+
       const result = await data.json()
+      console.log(result)
+
+      if (!result.ok) {
+        dispatch({
+          type: 'FAIL',
+          payload: {
+            error: result.message
+          }
+        })
+      }
+
       dispatch({
         type: 'UPDATE_FULL_ADDRESS',
         payload: result
@@ -54,7 +76,7 @@ const FormAddress = () => {
         autoFocus
         value={cep}
         onChange={handleChangeCep}
-
+        error={!!addressState.error}
       />
       <Grid item xs={8}>
         {fetchingCep && <CircularProgress size={20} />}
@@ -64,7 +86,8 @@ const FormAddress = () => {
         {
           label: 'Rua',
           xs: 9,
-          name: 'address'
+          name: 'address',
+          inputRef: addressField
         },
         {
           label: 'Número',
@@ -102,10 +125,12 @@ const FormAddress = () => {
 }
 
 function reducer(state, action) {
+  console.log('action:', action)
   if (action.type === 'UPDATE_FULL_ADDRESS') {
     return {
       ...state,
-      ...action.payload
+      ...action.payload,
+      error: null
     }
   }
 
@@ -115,6 +140,18 @@ function reducer(state, action) {
       [action.payload.name]: action.payload.value
     }
   }
+
+  if (action.type === 'FAIL') {
+    return {
+      ...initialState,
+      error: action.payload.error
+    }
+  }
+
+  if (action.type === 'RESET') {
+    return initialState
+  }
+
   return state
 }
 
