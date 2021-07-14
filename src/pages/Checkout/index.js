@@ -1,13 +1,20 @@
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { Button, Grid } from '@material-ui/core'
 import { Title, PaperContainer } from './styles'
 import Content from '../../components/Content'
 import FooterCheckout from '../../components/FooterCheckout'
 import TextField from '../../components/TextField'
 import OrderInfo from '../../components/OrderInfo'
-import { CHECKOUT_CONFIRMATION } from '../../routes'
+import { CHECKOUT_CONFIRMATION, HOME } from '../../routes'
+import useOrder from '../../hooks/order'
 
 const Checkout = () => {
+  const { order } = useOrder()
+
+  if (!order.pizzas.length) {
+    return <Redirect to={HOME} />
+  }
+
   return (
     <>
       <Content>
@@ -49,7 +56,7 @@ const Checkout = () => {
           component={Link}
           to={CHECKOUT_CONFIRMATION}
         >
-          Confirmar dados
+          Confirmar pedido
         </Button>
       </FooterCheckout>
     </>
