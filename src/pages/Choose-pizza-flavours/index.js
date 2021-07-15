@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable prefer-const */
 import { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import {
@@ -10,7 +12,8 @@ import {
   PizzasGrid,
   Title
 } from './styles'
-import { Grid, Typography } from '@material-ui/core'
+import useCollection from '../../hooks/db'
+import { CircularProgress, Container, Grid, Typography } from '@material-ui/core'
 import Content from '../../components/Content'
 import Footer from '../../components/Footer'
 import t from 'prop-types'
@@ -18,16 +21,29 @@ import t from 'prop-types'
 import singularOrPlural from '../../utils/singularOrPlural'
 import toMoney from '../../utils/to-money'
 import { CHOOSE_PIZZA_QUANTITY, HOME } from '../../routes'
-import pizzaFlavours from '../../mock/pizzas-flavours'
-// TODO AJUSTAR IMPORT DE IMGAGEM
-// import img from '../../assets/pizza-calabresa.png'
+
+// import pizzasFlavours from '../../mock/pizzas-flavours'
 
 const ChoosePizzaFlavours = ({ location }) => {
   const [checkboxes, setCheckboxes] = useState(() => ({}))
+  const pizzasFlavours = useCollection('pizzasFlavours')
 
   if (!location.state) {
     return <Redirect to={HOME} />
   }
+
+  if (!pizzasFlavours || pizzasFlavours === null) {
+    return (
+      <div style={{ display: 'flex', flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <CircularProgress />
+      </div>
+    )
+  }
+
+  if (pizzasFlavours.length === 0) {
+    return 'Não há dados.'
+  }
+
   const { flavours, id } = location.state.pizzaSize
 
   const handleChangeCheckbox = (pizzaId) => (e) => {
@@ -60,9 +76,7 @@ const ChoosePizzaFlavours = ({ location }) => {
         </HeaderContent>
 
         <PizzasGrid>
-          {pizzaFlavours.map((pizza) => {
-            const img = pizza.image
-
+          {pizzasFlavours.map((pizza) => {
             return (
               <Grid item key={pizza.id} xs>
                 <Card checked={!!checkboxes[pizza.id]}>
@@ -73,7 +87,7 @@ const ChoosePizzaFlavours = ({ location }) => {
                       onChange={handleChangeCheckbox(pizza.id)}
                     />
 
-                    <Img src={img} alt={pizza.name} />
+                    <Img src={pizza.image} alt={pizza.name} />
 
                     <Divider />
                     <Typography>{pizza.name}</Typography>
@@ -97,7 +111,10 @@ const ChoosePizzaFlavours = ({ location }) => {
               pathname: CHOOSE_PIZZA_QUANTITY,
               state: {
                 ...location.state,
-                pizzaFlavours: getFlavoursNameAndId(checkboxes)
+                pizzaFlavours: getFlavoursNameAndId({
+                  checkboxes,
+                  pizzasFlavours
+                })
               }
             },
             children: 'Quantas pizzas?',
@@ -113,12 +130,12 @@ function checkboxesChecked(checkboxes) {
   return Object.values(checkboxes).filter(Boolean)
 }
 
-function getFlavoursNameAndId(checkboxes) {
+function getFlavoursNameAndId({ checkboxes, pizzasFlavours }) {
   return Object.entries(checkboxes)
     .filter(([, value]) => !!value)
     .map(([id]) => ({
       id,
-      name: pizzaFlavours.find((flavour) => flavour.id === id).name
+      name: pizzasFlavours.find((flavour) => flavour.id === id).name
     }))
 }
 
