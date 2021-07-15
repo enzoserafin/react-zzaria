@@ -5,10 +5,12 @@ import OrderInfo from '../../components/OrderInfo'
 import Content from '../../components/Content'
 import FooterCheckout from '../../components/FooterCheckout'
 import useAuth from '../../hooks/auth'
+import useOrder from '../../hooks/order'
 import { HOME } from '../../routes'
 
 const CheckoutSuccess = () => {
   const { userInfo } = useAuth()
+  const { order } = useOrder()
 
   return (
     <>
@@ -33,14 +35,19 @@ const CheckoutSuccess = () => {
 
             <Typography variant='h6'>Endereço para entrega:</Typography>
             <Typography>
-              Rua tal, 10, Compl., Bairro, CEP 10100-100 - Cidade/UF
+              {order.address.address},
+              {' n'} {order.address.number},
+              {' '} {order.address.complement}<br />
+              Bairro: {order.address.district}<br />
+              CEP: {order.address.code}<br />
+              {order.address.city}/{order.address.state}
             </Typography>
 
             <Divider />
 
             <Typography variant='h6'>Telefone para contato:</Typography>
             <Typography>
-              {'(44) 99999-9999'}
+              {order.phone}
             </Typography>
 
           </PaperContainer>

@@ -20,7 +20,7 @@ import toMoney from '../../utils/to-money'
 import { CHOOSE_PIZZA_QUANTITY, HOME } from '../../routes'
 import pizzaFlavours from '../../mock/pizzas-flavours'
 // TODO AJUSTAR IMPORT DE IMGAGEM
-import img from '../../assets/pizza-calabresa.png'
+// import img from '../../assets/pizza-calabresa.png'
 
 const ChoosePizzaFlavours = ({ location }) => {
   const [checkboxes, setCheckboxes] = useState(() => ({}))
@@ -60,27 +60,30 @@ const ChoosePizzaFlavours = ({ location }) => {
         </HeaderContent>
 
         <PizzasGrid>
-          {pizzaFlavours.map((pizza) => (
-            <Grid item key={pizza.id} xs>
-              <Card checked={!!checkboxes[pizza.id]}>
-                <Label>
+          {pizzaFlavours.map((pizza) => {
+            const img = pizza.image
 
-                  <Checkbox
-                    checked={!!checkboxes[pizza.id]}
-                    onChange={handleChangeCheckbox(pizza.id)}
-                  />
+            return (
+              <Grid item key={pizza.id} xs>
+                <Card checked={!!checkboxes[pizza.id]}>
+                  <Label>
 
-                  <Img src={img} alt={pizza.name} />
+                    <Checkbox
+                      checked={!!checkboxes[pizza.id]}
+                      onChange={handleChangeCheckbox(pizza.id)}
+                    />
 
-                  <Divider />
-                  <Typography>{pizza.name}</Typography>
-                  <Typography variant='h5'>
-                    {toMoney(pizza.value[id])}
-                  </Typography>
-                </Label>
-              </Card>
-            </Grid>
-          ))}
+                    <Img src={img} alt={pizza.name} />
+
+                    <Divider />
+                    <Typography>{pizza.name}</Typography>
+                    <Typography variant='h5'>
+                      {toMoney(pizza.value[id])}
+                    </Typography>
+                  </Label>
+                </Card>
+              </Grid>)
+          })}
         </PizzasGrid>
       </Content>
 
