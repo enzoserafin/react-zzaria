@@ -13,7 +13,7 @@ import {
   Title
 } from './styles'
 import useCollection from '../../hooks/db'
-import { CircularProgress, Container, Grid, Typography } from '@material-ui/core'
+import { CircularProgress, Grid, Typography } from '@material-ui/core'
 import Content from '../../components/Content'
 import Footer from '../../components/Footer'
 import t from 'prop-types'
@@ -21,8 +21,7 @@ import t from 'prop-types'
 import singularOrPlural from '../../utils/singularOrPlural'
 import toMoney from '../../utils/to-money'
 import { CHOOSE_PIZZA_QUANTITY, HOME } from '../../routes'
-
-// import pizzasFlavours from '../../mock/pizzas-flavours'
+import getPizzasImg from '../../utils/getPizzasImg'
 
 const ChoosePizzaFlavours = ({ location }) => {
   const [checkboxes, setCheckboxes] = useState(() => ({}))
@@ -76,28 +75,28 @@ const ChoosePizzaFlavours = ({ location }) => {
         </HeaderContent>
 
         <PizzasGrid>
-          {pizzasFlavours.map((pizza) => {
-            return (
-              <Grid item key={pizza.id} xs>
-                <Card checked={!!checkboxes[pizza.id]}>
-                  <Label>
+          {pizzasFlavours.map((pizza) => (
 
-                    <Checkbox
-                      checked={!!checkboxes[pizza.id]}
-                      onChange={handleChangeCheckbox(pizza.id)}
-                    />
+            <Grid item key={pizza.id} xs>
+              <Card checked={!!checkboxes[pizza.id]}>
+                <Label>
 
-                    <Img src={pizza.image} alt={pizza.name} />
+                  <Checkbox
+                    checked={!!checkboxes[pizza.id]}
+                    onChange={handleChangeCheckbox(pizza.id)}
+                  />
 
-                    <Divider />
-                    <Typography>{pizza.name}</Typography>
-                    <Typography variant='h5'>
-                      {toMoney(pizza.value[id])}
-                    </Typography>
-                  </Label>
-                </Card>
-              </Grid>)
-          })}
+                  <Img src={getPizzasImg(pizza.image)} alt={pizza.name} />
+
+                  <Divider />
+                  <Typography>{pizza.name}</Typography>
+                  <Typography variant='h5'>
+                    {toMoney(pizza.value[id])}
+                  </Typography>
+                </Label>
+              </Card>
+            </Grid>
+          ))}
         </PizzasGrid>
       </Content>
 
