@@ -42,6 +42,7 @@ const FormAddress = ({ onUpdate = () => { } }) => {
             error: result.message
           }
         })
+        return
       }
 
       dispatch({
