@@ -102,7 +102,7 @@ const FormAddress = ({ onUpdate = () => { } }) => {
           inputRef: numberField
         },
         {
-          label: 'Comlemento',
+          label: 'Complemento',
           xs: 12,
           name: 'complement'
         },
